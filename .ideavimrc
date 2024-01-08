@@ -38,6 +38,8 @@ set smartcase
 set incsearch
 set hlsearch
 
+"clear search highlight
+nnoremap <Leader>/ :noh<CR>
 " Use system clipboard
 set clipboard+=unnamed
 
@@ -47,7 +49,7 @@ let mapleader = " "
 " ========================================================
 
 set surround
-set highligedyank
+set highlightedyank  
 set nerdtree
 
 " Easymotion settings
@@ -57,6 +59,11 @@ set notimeout
 "" Key mappings
 "" ========================================================
 inoremap jk <Esc>
+
+" Generate Popup
+map <leader>ge <Action>(Generate)
+
+
 
 map <leader><leader>s <Plug>(easymotion-s)
 map <leader><leader>f <Plug>(easymotion-f)
@@ -95,7 +102,7 @@ map <leader>x :NERDTreeToggle<CR>
 
 " Window splits
 map <leader>wv <Action>(SplitVertically)
-map <leader>ws <Action>(SplitHorizontally)
+map <leader>wh <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 
@@ -123,3 +130,9 @@ nmap <leader>gu <Action>(ShowUsages)
 nmap <leader>gt <Action>(GotoTest)
 nmap <leader>gf <Action>(Back)
 nmap <leader>gb <Action>(Forward)
+
+" Run code
+map <leader>rc <Action>(ChooseRunConfiguration)
+map <leader>rd <Action>(DebugClass)
+
+map \b <Action>(ToggleLineBreakpoint)
