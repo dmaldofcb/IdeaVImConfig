@@ -56,6 +56,8 @@ set notimeout
 
 "" Key mappings
 "" ========================================================
+inoremap jk <Esc>
+
 map <leader><leader>s <Plug>(easymotion-s)
 map <leader><leader>f <Plug>(easymotion-f)
 " Display options
@@ -67,8 +69,22 @@ map <leader>df <action>(ToggleFullScreen)
 inoremap <C-j> <Action>(PopupMenu-selectNext)
 inoremap <C-k> <Action>(PopupMenu-selectPrev)
 
-"Pane navigation
+" Jump between methods
+nnoremap [[ <Action>(MethodUp)
+nnoremap ]] <Action>(MethodDown)
 
+" Tab navigation
+nnoremap <S-h> :tabprev<CR>
+nnoremap <S-l> :tabnext<CR>
+
+"Pane navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
 
 "" Leader commands
 "" ========================================================
@@ -79,7 +95,7 @@ map <leader>x :NERDTreeToggle<CR>
 
 " Window splits
 map <leader>wv <Action>(SplitVertically)
-map <leader>wh <Action>(SplitHorizontally)
+map <leader>ws <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 
