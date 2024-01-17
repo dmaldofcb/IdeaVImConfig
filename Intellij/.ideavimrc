@@ -30,7 +30,7 @@ Plug 'tpope/vim-commentary'
 "" ========================================================
 
 set scrolloff=10
-set linenumber
+set relativenumber
 set showmode
 set showcmd
 
@@ -62,8 +62,8 @@ inoremap jk <Esc>
 
 " Generate Popup
 map <leader>ge <Action>(Generate)
-
-
+map <leader>h <Action>(ShowHoverInfo)
+map <leader>q <Action>(QuickImplementations)
 
 map <leader><leader>s <Plug>(easymotion-s)
 map <leader><leader>f <Plug>(easymotion-f)
@@ -73,12 +73,12 @@ map <leader>dz <action>(ToggleZenMode)
 map <leader>df <action>(ToggleFullScreen)
 
 " Popup navigation
-inoremap <C-j> <Action>(PopupMenu-selectNext)
-inoremap <C-k> <Action>(PopupMenu-selectPrev)
+" inoremap <C-j> <Action>(PopupMenu-selectNext)
+" inoremap <C-k> <Action>(PopupMenu-selectPrev)
 
 " Jump between methods
-nnoremap [[ <Action>(MethodUp)
-nnoremap ]] <Action>(MethodDown)
+nnoremap [[ :action MethodUp<cr>
+nnoremap ]] :action MethodDown<cr>
 
 " Tab navigation
 nnoremap <S-h> :tabprev<CR>
@@ -112,7 +112,8 @@ map <leader>fr <action>(RecentFiles)
 map <leader>fc <action>(FindInPath)
 map <leader><leader> <Action>(RecentFiles)
 map <leader>fl <action>(RecentLocations)
-map <leader>fs <action>(NewScratchFile)
+map <leader>ns <action>(NewScratchFile)
+map <leader>fs <action>(Switcher)
 
 " Refactoring
 map <leader>rn <Action>(RenameElement)
@@ -132,7 +133,16 @@ nmap <leader>gf <Action>(Back)
 nmap <leader>gb <Action>(Forward)
 
 " Run code
-map <leader>rc <Action>(ChooseRunConfiguration)
-map <leader>rd <Action>(DebugClass)
+map <leader>cr <Action>(ChooseRunConfiguration)
+map <leader>cd <Action>(ChooseDebugConfiguration)
 
+" Format Code/Blocks
+map <leader>pf <Action>(ShowReformatFileDialog)
+map <leader>pc <Action>(ReformatCode)
+
+" Degug Code
 map \b <Action>(ToggleLineBreakpoint)
+
+nnoremap [e :action GotoPreviousError<cr> :action ShowErrorDescription<cr>
+nnoremap ]e :action GotoNextError<cr> :action ShowErrorDescription<cr>
+
