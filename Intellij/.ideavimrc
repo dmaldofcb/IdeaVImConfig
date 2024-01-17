@@ -42,6 +42,8 @@ set hlsearch
 nnoremap <Leader>/ :noh<CR>
 " Use system clipboard
 set clipboard+=unnamed
+" Paste Options
+nmap <C-P> \"0p
 
 let mapleader = " "
 
@@ -85,10 +87,10 @@ nnoremap <S-h> :tabprev<CR>
 nnoremap <S-l> :tabnext<CR>
 
 "Pane navigation
-nnoremap <A-h> <C-w>h
-nnoremap <A-l> <C-w>l
-nnoremap <A-k> <C-w>k
-nnoremap <A-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
 " Easy visual indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -129,8 +131,14 @@ nmap <leader>gy <Action>(GotoTypeDeclaration)
 nmap <leader>gi <Action>(GotoImplementation)
 nmap <leader>gu <Action>(ShowUsages)
 nmap <leader>gt <Action>(GotoTest)
-nmap <leader>gf <Action>(Back)
-nmap <leader>gb <Action>(Forward)
+" Idavim forward back not consistent use Intellij forward and back
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
+map <leader>lc <Action>(JumpToLastChange)
+map <leader>lc <Action>(JumpToNextChange)
+
+" utilities 
+nmap <leader>sw <Action>(SurroundWith)
 
 " Run code
 map <leader>cr <Action>(ChooseRunConfiguration)
@@ -140,7 +148,7 @@ map <leader>cd <Action>(ChooseDebugConfiguration)
 map <leader>pf <Action>(ShowReformatFileDialog)
 map <leader>pc <Action>(ReformatCode)
 
-" Degug Code
+" Debug Code
 map \b <Action>(ToggleLineBreakpoint)
 
 nnoremap [e :action GotoPreviousError<cr> :action ShowErrorDescription<cr>
