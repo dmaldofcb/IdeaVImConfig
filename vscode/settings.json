@@ -23,6 +23,34 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.navigateLeft"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.navigateDown"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.navigateUp"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.navigateRight"]
+    },
+    {
+      "before": ["leader", "t"],
+      "commands": ["workbench.action.togglePanel"]
+    },
+    {
+      "before": ["leader", "E"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["leader", "e"],
+      "commands": ["workbench.files.action.focusFilesExplorer"]
+    },
+    {
       "before": ["leader", "/"],
       "commands": [":nohl"]
     },
@@ -53,16 +81,23 @@
     },
     // file naviagation
     {
-      "before": ["leader", "f", "f"],
+      "before": ["leader", "s", "f"],
       "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": ["leader", "s", "f"],
+      "before": ["leader", "s", "w"],
       "commands": ["workbench.action.findInFiles"]
     },
     { "before": ["leader", "f", "r"], "commands": ["revealInExplorer"] },
     // format file
-    { "before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
+    {
+      "before": ["leader", "p"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["leader", "f", "c"],
+      "commands": ["editor.action.formatDocument"]
+    },
     // Refactoring
     {
       "before": ["<leader>", "r", "n"],
@@ -78,7 +113,7 @@
       "commands": ["editor.action.peekDefinition"]
     },
     {
-      "before": ["g", "h"],
+      "before": ["K"],
       "commands": ["editor.action.showDefinitionPreviewHover"]
     },
     {
@@ -90,15 +125,15 @@
       "commands": ["editor.action.peekImplementation"]
     },
     {
-      "before": ["g", "q"],
+      "before": ["<leader>", "c", "a"],
       "commands": ["editor.action.quickFix"]
     },
     {
-      "before": ["g", "u"],
+      "before": ["g", "r"],
       "commands": ["editor.action.referenceSearch.trigger"]
     },
     {
-      "before": ["g", "y"],
+      "before": ["g", "D"],
       "commands": ["editor.action.goToTypeDefinition"]
     },
     {
@@ -118,9 +153,9 @@
     },
     // Move selected lines while staying in visual mode
     { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
-    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] }
     // toggle comment selection
-    { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
+    // { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
   ],
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -129,5 +164,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "workbench.colorTheme": "Atom One Dark",
-  "editor.fontFamily": "MesloLGM Nerd Font,Consolas, 'Courier New', monospace"
+  "vim.commandLineModeKeyBindings": []
 }
