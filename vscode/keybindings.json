@@ -1,48 +1,152 @@
+// Place your key bindings in this file to override the defaults
 [
-  // NAVIGATION
+  // Exit explorer with CTRL+l
   {
-    "key": "ctrl+shift+a",
-    "command": "workbench.action.terminal.focusNext",
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight",
+    "when": "explorerViewletFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "sideBarFocus"
+  },
+  // Rename files
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  // Create new files and folders
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "shift+a",
+    "command": "explorer.newFolder",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // Copy, paste and cut files
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  // Delete files
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  // Open files to side
+  {
+    "key": "v",
+    "command": "explorer.openToSide",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  //
+  // === Submenu navigation ===
+  //
+  {
+    "key": "ctrl+n",
+    "command": "selectNextSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  //
+  // === Terminal ===
+  //
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
   {
-    "key": "ctrl+shift+b",
-    "command": "workbench.action.terminal.focusPrevious",
-    "when": "terminalFocus"
-  },
-  {
-    "key": "ctrl+shift+j",
-    "command": "workbench.action.togglePanel"
-  },
-  {
-    "key": "ctrl+shift+n",
+    "key": "ctrl+n",
     "command": "workbench.action.terminal.new",
     "when": "terminalFocus"
   },
   {
-    "key": "ctrl+shift+w",
-    "command": "workbench.action.terminal.kill",
+    "key": "ctrl+l",
+    "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
   },
   {
-    "key": "alt+h",
-    "command": "workbench.action.focusLeftGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "key": "ctrl+h",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
   },
   {
-    "key": "alt+l",
-    "command": "workbench.action.focusRightGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "key": "ctrl+m",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "terminalFocus"
   },
   {
-    "key": "alt+k",
-    "command": "workbench.action.focusAboveGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "key": "shift+alt+k",
+    "command": "editor.action.transformToKebabcase"
   },
   {
-    "key": "alt+j",
-    "command": "workbench.action.focusBelowGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "key": "shift+alt+l",
+    "command": "editor.action.transformToLowercase"
+  },
+  {
+    "key": "shift+alt+u",
+    "command": "editor.action.transformToUppercase"
+  },
+  {
+    "key": "shift+alt+s",
+    "command": "editor.action.transformToSnakecase"
+  },
+  //
+  // === Other ===
+  //
+  // Toggle comment selection
+  {
+    "key": "ctrl+/",
+    "command": "editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "workbench.action.toggleZenMode"
+  },
+  {
+    "key": "shift+alt+n",
+    "command": "workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
   }
-
 ]
