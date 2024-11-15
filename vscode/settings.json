@@ -22,54 +22,11 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<C-h>"],
-      "commands": ["workbench.action.navigateLeft"]
-    },
-    {
-      "before": ["<C-j>"],
-      "commands": ["workbench.action.navigateDown"]
-    },
-    {
-      "before": ["<C-k>"],
-      "commands": ["workbench.action.navigateUp"]
-    },
-    {
-      "before": ["<C-l>"],
-      "commands": ["workbench.action.navigateRight"]
-    },
-    {
-      "before": ["leader", "t"],
-      "commands": ["workbench.action.togglePanel"]
-    },
-    {
-      "before": ["leader", "E"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
-    },
-    {
-      "before": ["leader", "e"],
-      "commands": ["workbench.files.action.focusFilesExplorer"]
-    },
-    {
-      "before": ["leader", "/"],
-      "commands": [":nohl"]
-    },
-    // NAVIGATION
-    // switch b/w buffers
     { "before": ["<S-h>"], "commands": [":bprevious"] },
     { "before": ["<S-l>"], "commands": [":bnext"] },
-
-    // splits
-    { "before": ["leader", "w", "v"], "commands": [":vsplit"] },
-    { "before": ["leader", "w", "h"], "commands": [":split"] },
-    {
-      "before": ["leader", "w", "u"],
-      "commands": ["workbench.action.joinTwoGroups"]
-    },
-    // NICE TO HAVE
-    { "before": ["leader", "w"], "commands": [":w!"] },
-    { "before": ["leader", "q"], "commands": [":q!"] },
-    { "before": ["leader", "x"], "commands": [":x!"] },
+    // { "before": ["leader", "w"], "commands": [":w!"] },
+    // { "before": ["leader", "q"], "commands": [":q!"] },
+    // { "before": ["leader", "x"], "commands": [":x!"] },
     // Navigate to different error/warnings
     {
       "before": ["[", "d"],
@@ -79,35 +36,7 @@
       "before": ["]", "d"],
       "commands": ["editor.action.marker.next"]
     },
-    // file naviagation
-    {
-      "before": ["leader", "s", "f"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["leader", "s", "w"],
-      "commands": ["workbench.action.findInFiles"]
-    },
-    { "before": ["leader", "f", "r"], "commands": ["revealInExplorer"] },
-    // format file
-    {
-      "before": ["leader", "p"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "before": ["leader", "f", "c"],
-      "commands": ["editor.action.formatDocument"]
-    },
-    // Refactoring
-    {
-      "before": ["<leader>", "r", "n"],
-      "commands": ["editor.action.rename"]
-    },
-    {
-      "before": ["<leader>", "r", "f"],
-      "commands": ["editor.action.refactor"]
-    },
-    // LSP Keybinding
+    // LSP Navigation
     {
       "before": ["g", "p", "d"],
       "commands": ["editor.action.peekDefinition"]
@@ -125,10 +54,6 @@
       "commands": ["editor.action.peekImplementation"]
     },
     {
-      "before": ["<leader>", "c", "a"],
-      "commands": ["editor.action.quickFix"]
-    },
-    {
       "before": ["g", "r"],
       "commands": ["editor.action.referenceSearch.trigger"]
     },
@@ -139,7 +64,7 @@
     {
       "before": ["g", "p", "y"],
       "commands": ["editor.action.peekTypeDefinition"]
-    }
+    },
   ],
   "vim.visualModeKeyBindings": [
     // Stay in visual mode while indenting
