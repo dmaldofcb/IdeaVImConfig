@@ -6,7 +6,7 @@
 
 "" -- Suggested options --
 " Don't use Ex mode, use Q for formatting.
-map Q gq
+" map Q gq
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 
@@ -17,22 +17,25 @@ Plug 'tpope/vim-commentary'
 
 "" Base Settings
 "" ========================================================
-
+" source config
+nnoremap  <leader>so :source ~/.ideavimrc<cr>:nohlsearch<cr>
 set scrolloff=10
 set relativenumber
 set showmode
 set showcmd
+set noerrorbells
 
 set smartcase
 set incsearch
 set hlsearch
 
 "clear search highlight
-nnoremap <C-m> :noh<CR>
+nnoremap <Esc> :nohlsearch<cr>
+
 " Use system clipboard
 set clipboard+=unnamed
-" Paste Options, will paste from register 0
-nmap <C-P> \"0p
+" Pasting options
+nmap <C-p> \"0p
 
 let mapleader = " "
 
@@ -44,7 +47,7 @@ set highlightedyank
 set nerdtree
 
 " Easymotion settings
-set easymotion
+" set easymotion
 set notimeout
 
 "" Key mappings
@@ -53,11 +56,11 @@ inoremap jk <Esc>
 
 " Generate Popup
 map <leader>ge <Action>(Generate)
-map <leader>h <Action>(ShowHoverInfo)
+map K <Action>(ShowHoverInfo)
 map <leader>q <Action>(QuickImplementations)
 
-map <leader><leader>s <Plug>(easymotion-s)
-map <leader><leader>f <Plug>(easymotion-f)
+" map <leader><leader>s <Plug>(easymotion-s)
+" map <leader><leader>f <Plug>(easymotion-f)
 " Display options
 map <leader>dd <action>(ToggleDistractionFreeMode)
 map <leader>dz <action>(ToggleZenMode)
@@ -75,6 +78,10 @@ nnoremap ]] :action MethodDown<cr>
 nnoremap <S-h> :tabprev<CR>
 nnoremap <S-l> :tabnext<CR>
 
+" Expand/collapse all
+nmap za <Action>(ExpandAllRegions)
+nmap zA <Action>(CollapseAllRegions)
+
 "Pane navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -83,13 +90,12 @@ nnoremap <C-j> <C-w>j
 " Easy visual indentation
 vnoremap < <gv
 vnoremap > >gv
-
-"" Leader commands
+" Leader commands
 "" ========================================================
 " Comment lines
 map <C-/> <Action>(CommentByLineComment)
 " Open NERDTree (use q to exit)
-map <leader>x :NERDTreeToggle<CR>
+map <leader>e :action ActivateProjectToolWindow<CR>
 
 " Window splits
 map <leader>wv <Action>(SplitVertically)
@@ -97,14 +103,35 @@ map <leader>wh <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 
+""""""""""""""""
 " File navigation
-map <leader>ff <action>(GotoFile)
-map <leader>fr <action>(RecentFiles)
-map <leader>fc <action>(FindInPath)
-map <leader>fa <Action>(GotoSymbol)
-map <leader>fl <action>(RecentLocations)
-map <leader>ns <action>(NewScratchFile)
-map <leader>fs <action>(Switcher)
+""""""""""""""""
+" The all powerful Search Everywhere
+map <leader>se <Action>(SearchEverywhere)
+" Focus on Navbar
+map <leader>fn <Action>(ShowNavBar)
+" Search for File
+nmap <leader>sf <action>(GotoFile)
+" Select File in Project View
+nmap<leader>E <Action>(SelectInProjectView)
+" Go to Action
+nmap <leader>sa <action>(GotoAction)
+" Search in recent files
+nmap <leader>sr <action>(RecentFiles)
+" Find in the word in Files
+nmap <leader>sw <action>(FindInPath)
+" Find in file
+nmap <leader>/ <action>(Find)
+" Search for Symbols 
+nmap <leader>ss <action>(GotoSymbol)
+" Search for Class 
+nmap <leader>sd :action ActivateProblemsToolWindow<CR>
+nmap <leader>s. <action>(RecentLocations)
+nmap <leader>ns <action>(NewScratchFile)
+nmap <leader><leader> <action>(Switcher)
+""""""""""""""""
+" END File navigation
+""""""""""""""""
 
 " Refactoring
 map <leader>rn <Action>(RenameElement)
@@ -115,38 +142,74 @@ map <leader>rs <Action>(ChangeSignature)
 map <leader>rr <Action>(Refactorings.QuickListPopupAction)
 
 " Go to code
-nmap <leader>gd <Action>(GotoDeclaration)
-nmap <leader>gy <Action>(GotoTypeDeclaration)
-nmap <leader>gi <Action>(GotoImplementation)
-nmap <leader>gu <Action>(ShowUsages)
+nmap gd <Action>(GotoDeclaration)
+nmap gD <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gr <Action>(ShowUsages)
 nmap <leader>gt <Action>(GotoTest)
+nmap <leader>gD <Action>(GotoSuperMethod)
 
-" Idavim forward back not consistent use Intellij forward and back
+" The default C-o and C-i behaviours have certain inconsistencies with
+" I'm using the default IntelliJ behaviours instead.
 map <C-o> <Action>(Back)
 map <C-i> <Action>(Forward)
 map <leader>lc <Action>(JumpToLastChange)
-map <leader>lc <Action>(JumpToNextChange)
+map <leader>nc <Action>(JumpToNextChange)
 
-" utilities
-vnoremap <leader>sw :<C-U>action SurroundWith<CR>
-xnoremap <leader>sw :<C-U>action SurroundWith<CR>
+" Map J to move the current line down
+vnoremap J :action MoveLineDown<CR>
 
+" Map K to move the current line up
+vnoremap K :action MoveLineUp<CR>
+
+""""""""""""""""
+" Code Actions "
+""""""""""""""""
+" Utilities
+vnoremap <leader>cs :<C-U>action SurroundWith<CR>
+xnoremap <leader>cs :<C-U>action SurroundWith<CR>
 " Run code
 map <leader>cr <Action>(ChooseRunConfiguration)
 map <leader>cd <Action>(ChooseDebugConfiguration)
-
+" Show code actions from LSP
+nmap <leader>ca :action ShowIntentionActions<CR>
 " Format Code/Blocks
 map <leader>pf <Action>(ShowReformatFileDialog)
-map <leader>pc <Action>(ReformatCode)
+map <leader>fc <Action>(ReformatCode)
+""""""""""""""""
+" END Code Actions "
+""""""""""""""""
 
 " Debug Code
 map \b <Action>(ToggleLineBreakpoint)
 
-nnoremap [e :action GotoPreviousError<cr> :action ShowErrorDescription<CR>
-nnoremap ]e :action GotoNextError<cr> :action ShowErrorDescription<CR>
+nnoremap [d :action GotoPreviousError<cr> :action ShowErrorDescription<cr>
+nnoremap ]d :action GotoNextError<cr> :action ShowErrorDescription<cr>
 
-" Intellij Actions
+"Intellij Actions
 map <leader>t <Action>(ActivateTerminalToolWindow)
-nnoremap <C-F> :action Find<CR>
-nnoremap <leader>B :action ToggleBookmarkWithMnemonic<CR>
-nnoremap <leader>b :action ShowBookmarks<CR>
+" Select occurrence
+nmap <C-o> <Action>(SelectNextOccurrence)
+" Unselect occurrence
+nmap <C-x> <Action>(UnselectPreviousOccurrence)
+
+nmap <leader>ww <Action>(HideAllWindows)
+"map ]p <Action>(NextWindow)
+" Map to open the Debug tool window
+nmap <leader>wd :action ActivateDebugToolWindow<CR>
+" Map to open the Run tool window
+nmap <leader>wr :action ActivateRunToolWindow<CR>
+" Map to open the Gradle tool window
+nmap <leader>wv :action ActivateVersionControlToolWindow<CR>
+nmap <leader>wg :action ActivateGradleToolWindow<CR>
+
+" Bookmarks
+map <leader>bb <Action>(ShowBookmarks)
+" Toggle bookmark
+map <leader>bt <Action>(ToggleBookmark)
+" Set a bookmark with a mnemonic
+" TIP: As an alternative to this action, IdeaVim has an amazing feature (ideamarks) where creation of a global Vim mark
+"   (letters and capital letters only) will automatically create a mnemonic bookmark.
+"   i.e., if you press "mB", it creates an IntelliJ bookmark "B" automatically. You can then navigate to it with 'B
+nmap ]b :action GotoNextBookmark<CR>
+nmap [b :action GotoPreviousBookmark<CR>
